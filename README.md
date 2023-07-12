@@ -1,16 +1,39 @@
-# draggable_float_widget
+## Features
 
-A new Flutter project.
+Floating windows can be dragged
 
-## Getting Started
+## Getting started
 
-This project is a starting point for a Flutter application.
+```dart
+import 'package:draggable_float_widget/draggable_float_widget.dart';
+```
 
-A few resources to get you started if this is your first Flutter project:
+## Usage
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+TODO: Include short and useful examples for package users. Add longer examples
+to `/example` folder. 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```dart
+  /// 可拖拽浮窗
+DraggableFloatWidget draggableFloatWidget() {
+  return DraggableFloatWidget(
+    // 设置位置
+    top: ScreenUtil().statusBarHeight + 1000.px,
+    right: 20.px,
+    child: GameEvent(
+      LocationName.GAME_HALL_PAGE,
+      didChangeWidgetCallback: () {
+        // 如果需要更新自身大小，则需要调用该函数
+        floatController.updateWidget();
+      },
+    ),
+    controller: floatController,
+    // 设置父类容器
+    containerKey: containerKey,
+  );
+}
+```
+
+## Additional information
+
+Hava fun
