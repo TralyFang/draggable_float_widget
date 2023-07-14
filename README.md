@@ -5,13 +5,10 @@ Floating windows can be dragged
 ## Getting started
 
 ```dart
-import 'package:draggable_float_widget/draggable_float_widget.dart';
+import 'package:widget_float_draggable/draggable_float_widget.dart';
 ```
 
 ## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
 
 ```dart
   /// 可拖拽浮窗
