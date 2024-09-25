@@ -2,7 +2,6 @@ library draggable_float_widget;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'orntdrag.dart';
 
 class DraggableFloatWidget extends StatefulWidget {
@@ -180,25 +179,23 @@ class _DraggableFloatWidgetState extends State<DraggableFloatWidget> {
 
   // 更新初始化变量
   updateBound({bool isUpdate = false}) {
-    if (WidgetsBinding.instance != null) {
-      WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
-        final widgetSize = getWidgetSize(childKey);
-        final Size containerSize = getWidgetSize(widget.containerKey);
-        // 实际widgetSize.width是不可能大于屏幕一半的
-        if (widgetSize.width < screentWidth()/2.0) {
-          _height = widgetSize.height;
-          _width = widgetSize.width;
-        }
-        if (!isUpdate) { // 更新就不要重置坐标了
-          _top = widget.top ?? (containerSize.height - (widget.bottom ?? 0) - _height);
-          _left = widget.left ?? (containerSize.width - (widget.right ?? 0) - _width);
-        }
-        if (kDebugMode) {
-          print("gposition object: post: $_top, $_left, $_height, $_width, $widgetSize");
-        }
-        boundLimitSetState();
-      });
-    }
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      final widgetSize = getWidgetSize(childKey);
+      final Size containerSize = getWidgetSize(widget.containerKey);
+      // 实际widgetSize.width是不可能大于屏幕一半的
+      if (widgetSize.width < screentWidth()/2.0) {
+        _height = widgetSize.height;
+        _width = widgetSize.width;
+      }
+      if (!isUpdate) { // 更新就不要重置坐标了
+        _top = widget.top ?? (containerSize.height - (widget.bottom ?? 0) - _height);
+        _left = widget.left ?? (containerSize.width - (widget.right ?? 0) - _width);
+      }
+      if (kDebugMode) {
+        print("gposition object: post: $_top, $_left, $_height, $_width, $widgetSize");
+      }
+      boundLimitSetState();
+    });
   }
 
   @override
